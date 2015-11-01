@@ -13,23 +13,26 @@
 
 ActiveRecord::Schema.define(version: 20151101165839) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "alarms", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "note",       limit: 65535
-    t.decimal  "latitude",                 precision: 15, scale: 10
-    t.decimal  "longitude",                precision: 15, scale: 10
-    t.integer  "user_id",    limit: 4
-    t.text     "address",    limit: 65535
-    t.decimal  "radius",                   precision: 15, scale: 10
-    t.boolean  "status",     limit: 1
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.string   "title"
+    t.text     "note"
+    t.decimal  "latitude",   precision: 15, scale: 10
+    t.decimal  "longitude",  precision: 15, scale: 10
+    t.integer  "user_id"
+    t.text     "address"
+    t.decimal  "radius",     precision: 15, scale: 10
+    t.boolean  "status"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
