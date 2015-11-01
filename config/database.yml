@@ -83,6 +83,7 @@ production:
   database: test1_production
   username: test1
   password: <%= ENV['TEST1_DATABASE_PASSWORD'] %>
+
 # # MySQL.  Versions 5.0+ are recommended.
 # #
 # # Install the MYSQL driver

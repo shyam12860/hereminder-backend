@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.2'
 # Use mysql as the database for Active Record
 # gem 'mysql2','~>0.3.18'
-gem 'pg'
+# gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,14 +29,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-gem 'devise','~>3.1.2'
 gem 'fb_graph2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'rails_12factor', group: :production
 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'mysql2','~>0.3.18'
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
