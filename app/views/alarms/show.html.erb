@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @alarm.title %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @alarm.note %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @alarm.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @alarm.longitude %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @alarm.user_id %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @alarm.address %>
+</p>
+
+<p>
+  <strong>Radius:</strong>
+  <%= @alarm.radius %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @alarm.status %>
+</p>
+
+<%= link_to 'Edit', edit_alarm_path(@alarm) %> |
+<%= link_to 'Back', alarms_path %>
