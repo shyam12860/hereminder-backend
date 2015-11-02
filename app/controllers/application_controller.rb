@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 				render json: { error: 'Incorrect Auth Token.' },status: 401 and return
 			end
 		else
-			render json: { error: "Missing Auth Token."},status: 401 and return
+			render json: { error: "Missing Auth Token.", token:request.headers['authToken']},status: 401 and return
 		end
 	end
 
