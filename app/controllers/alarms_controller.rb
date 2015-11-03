@@ -61,7 +61,7 @@ class AlarmsController < ApplicationController
   # DELETE /alarms/1
   # DELETE /alarms/1.json
   def destroy
-    if @alarm.exists?
+    if Alarm.exists?(@alarm.id)
       @alarm.destroy
       render json: @alarm, status: 200
     else

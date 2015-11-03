@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
 		if auth = request.headers['authToken']
 			check = FbGraph2::User.me(request.headers['authToken']).fetch(fields: [:name, :email, :first_name, :last_name])
 			check.fetch
-			print check.email
 			if check
 				u = User.where(email: check.email)
 				
