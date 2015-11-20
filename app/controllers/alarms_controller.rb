@@ -20,6 +20,7 @@ class AlarmsController < ApplicationController
 
   # GET /alarms/1/edit
   def edit
+
   end
 
   # POST /alarms
@@ -27,7 +28,7 @@ class AlarmsController < ApplicationController
   def create
     @alarm = Alarm.new(alarm_params)
     @alarm.user_id = @user.id
-
+    @alarm.notify_users = params[:notify_users].to_json
     if @alarm.save
       render json: @alarm
     else
@@ -47,6 +48,12 @@ class AlarmsController < ApplicationController
   # PATCH/PUT /alarms/1
   # PATCH/PUT /alarms/1.json
   def update
+    @alarm[:status] = true
+    if @alarm.save
+      render json: @alarm
+    else
+      render json: @alarm.erros, status: :unprocessable_entity
+    end
     # respond_to do |format|
     #   if @alarm.update(alarm_params)
     #     format.html { redirect_to @alarm, notice: 'Alarm was successfully updated.' }
@@ -81,6 +88,6 @@ class AlarmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alarm_params
-      params.permit(:title, :note, :latitude, :longitude, :user_id, :address, :radius, :status)
+      params.permit(:title, :note, :latitude, :longitude, :user_id, :address, :radius, :status, :notify_users)
     end
 end
