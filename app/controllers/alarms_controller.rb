@@ -13,6 +13,12 @@ class AlarmsController < ApplicationController
   def show
   end
 
+  # GET /alarms/false/
+  def false_alarms
+    alarms = @user.alarms.where(status: false)
+    render json: alarms
+  end
+
   # GET /alarms/new
   def new
     # @alarm = Alarm.new
