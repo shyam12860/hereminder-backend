@@ -1,6 +1,13 @@
 class AlarmsController < ApplicationController
   before_action :set_alarm, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user_token
+
+  #GET /login
+  #GET /user.json
+  def login
+    render json: @user
+  end
+
   # GET /alarms
   # GET /alarms.json
   def index

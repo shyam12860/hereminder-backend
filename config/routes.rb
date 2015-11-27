@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'alarms#index'
 
+
   # Example of regular route:
   get 'alarms_false/' => 'alarms#false_alarms'
+  get 'login/' => 'alarms#login'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
