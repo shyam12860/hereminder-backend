@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120172947) do
+ActiveRecord::Schema.define(version: 20151125172957) do
 
   create_table "alarms", force: :cascade do |t|
     t.string   "title",        limit: 255
@@ -29,8 +29,10 @@ ActiveRecord::Schema.define(version: 20151120172947) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "apns_token", limit: 65535
+    t.text     "gcm_token",  limit: 65535
   end
 
 end
