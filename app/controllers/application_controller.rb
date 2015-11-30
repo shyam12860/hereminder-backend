@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
 				if u.length > 0
 					@user = u.first
 				else
-					# print "#===================================#==================================="
 					@user = User.new(email: check.email)
 					if params['apns_token']
 						@user.apns_token = params['apns_token']
@@ -32,8 +31,4 @@ class ApplicationController < ActionController::Base
 			render json: { error: "Missing Auth Token.", token:request.headers['authToken']},status: 401 and return
 		end
 	end
-
-	# def verify_access
-	# 	render json: { error: 'Access denied.' },status: 403 and return unless Access.granted?((params[:controller]+"controller"),params[:action],@user.id)
-	# end
 end
