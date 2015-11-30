@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
 				
 				if u.length > 0
 					@user = u.first
+					if params['apns_token']
+						@user.apns_token = params['apns_token']
+					end
+					if params['gcm_token']
+						@user.gcm_token = params['gcm_token']
+					end
+					@user.save
 				else
 					@user = User.new(email: check.email)
 					if params['apns_token']
