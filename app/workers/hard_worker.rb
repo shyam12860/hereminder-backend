@@ -15,8 +15,8 @@ class HardWorker
 	    	user = User.find(id)
 	    	if user.apns_token
 	    		#send apns notification
-	    		APNS.send_notification(user.apns_token, 'Your friend has reached' + alarm.address)
-	    		# notifications.push(APNS::Notification.new(user.apns_token, :alert => , :badge => 1, :sound => 'default'))
+	    		# APNS.send_notification(user.apns_token, 'Your friend has reached' + alarm.address)
+	    		notifications.push(APNS::Notification.new(user.apns_token, :alert => , :badge => 1, :sound => 'default'))
 	    	end
 
 	    	if user.gcm_token
