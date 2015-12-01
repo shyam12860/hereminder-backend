@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'fb_graph2'
 gem 'pushmeup'
 gem 'sidekiq'
+gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
