@@ -3,11 +3,10 @@ class HardWorker
   def perform(alarm_id)
     #send push notifications
     alarm = Alarm.find(alarm_id)
-    APNS.host = 'gateway.push.apple.com' 
+    APNS.host = 'gateway.sandbox.push.apple.com' 
 	APNS.port = 2195
 	APNS.pem  = Rails.root.join('private','ck.pem')
 	APNS.pass = 'hereminder'
-
 	if alarm.notify_users and alarm.notify_users != "null"
 
     	user_ids = JSON.parse(alarm.notify_users)
@@ -16,7 +15,8 @@ class HardWorker
 	    	user = User.find(id)
 	    	if user.apns_token
 	    		#send apns notification
-	    		notifications.push(APNS::Notification.new(user.apns_token, :alert => 'Your friend has reached' + alarm.address, :badge => 1, :sound => 'default'))
+	    		APNS.send_notification(user.apns_token, 'Your friend has reached' + alarm.address)
+	    		# notifications.push(APNS::Notification.new(user.apns_token, :alert => , :badge => 1, :sound => 'default'))
 	    	end
 
 	    	if user.gcm_token
