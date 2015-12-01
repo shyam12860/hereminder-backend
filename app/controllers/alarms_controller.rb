@@ -41,7 +41,9 @@ class AlarmsController < ApplicationController
   def create
     @alarm = Alarm.new(alarm_params)
     @alarm.user_id = @user.id
-    @alarm.notify_users = params[:notify_users].to_json
+    if params[:notify_users]
+      @alarm.notify_users = params[:notify_users]
+    end
     if @alarm.save
       render json: @alarm
     else
@@ -63,13 +65,9 @@ class AlarmsController < ApplicationController
   def update
     @alarm[:status] = true
     if @alarm.save
+      HardWorker.perform_async(@alarm.id)
+      render json: @alarm
       
-      device_token = @user.apns_token
-
-    print device_token
-    APNS.send_notification(device_token, 'Hello iPhone!' )
-    render json: @alarm
-      # HardWorker.perform_async(@alarm.id)
     else
       render json: @alarm.erros, status: :unprocessable_entity
     end
