@@ -12,7 +12,6 @@ class HardWorker
 
     	fbids = JSON.parse(alarm.notify_users)
 	    notifications = []
-	    print fbids
 	    fbids.each do |id|
 	    	user = User.where(fbid: id).first
 	    	if user.apns_token
@@ -35,7 +34,6 @@ class HardWorker
 
 	    end
 
-	    notifications.push(APNS::Notification.new(User.find(17).apns_token, :alert => 'Your friend has reached' + alarm.address, :badge => 1, :sound => 'default'))
 	    APNS.send_notifications(notifications)
 	end
   end
