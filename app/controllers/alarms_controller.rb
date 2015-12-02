@@ -43,6 +43,8 @@ class AlarmsController < ApplicationController
     @alarm.user_id = @user.id
     if params[:notify_users]
       @alarm.notify_users = params[:notify_users]
+    else
+      @alarm.notify_users = "[]"
     end
     if @alarm.save
       render json: @alarm
