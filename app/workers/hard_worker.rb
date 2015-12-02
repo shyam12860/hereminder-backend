@@ -9,10 +9,10 @@ class HardWorker
 	APNS.pass = 'hereminder'
 	if alarm.notify_users and alarm.notify_users != "null"
 
-    	user_ids = JSON.parse(alarm.notify_users)
+    	fbids = JSON.parse(alarm.notify_users)
 	    notifications = []
-	    user_ids.each do |id|
-	    	user = User.find(id)
+	    fbids.each do |id|
+	    	user = User.where(fbid: id).first
 	    	if user.apns_token
 	    		#send apns notification
 	    		# APNS.send_notification(user.apns_token, 'Your friend has reached' + alarm.address)

@@ -7,13 +7,14 @@ class ApplicationController < ActionController::Base
  	
 	def authenticate_user_token
 		if auth = request.headers['authToken']
-			check = FbGraph2::User.me(request.headers['authToken']).fetch(fields: [:name, :email, :first_name, :last_name])
+			check = FbGraph2::User.me(request.headers['authToken']).fetch(fields: [:id,:name, :email, :first_name, :last_name])
 			check.fetch
 			if check
 				u = User.where(email: check.email)
-				
+
 				if u.length > 0
 					@user = u.first
+					@user.fbid = check.id
 					if params['apns_token']
 						@user.apns_token = params['apns_token']
 					end
@@ -22,7 +23,9 @@ class ApplicationController < ActionController::Base
 					end
 					@user.save
 				else
+
 					@user = User.new(email: check.email)
+					@user.fbid = check.id
 					if params['apns_token']
 						@user.apns_token = params['apns_token']
 					end
