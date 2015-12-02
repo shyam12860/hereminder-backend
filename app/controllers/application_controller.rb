@@ -24,8 +24,7 @@ class ApplicationController < ActionController::Base
 					@user.save
 				else
 
-					@user = User.new(email: check.email)
-					@user.fbid = check.id
+					@user = User.new(email: check.email, fbid: check.id)
 					if params['apns_token']
 						@user.apns_token = params['apns_token']
 					end
